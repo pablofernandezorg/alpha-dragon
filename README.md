@@ -141,8 +141,17 @@ Data Training
         error += network.train(train, [Output1, Output2], LEARN_RATE)
 ```
 
-<img src="http://pablofernandez.com/stockmarket/imgs/A.png" alt="Sentiment Analysis" style="width: 50px;"/>
-<img src="http://pablofernandez.com/stockmarket/imgs/B.png" alt="Sentiment Analysis" style="width: 50px;"/>
-<img src="http://pablofernandez.com/stockmarket/imgs/C.png" alt="Sentiment Analysis" style="width: 50px;"/>
-<img src="http://pablofernandez.com/stockmarket/imgs/D.png" alt="Sentiment Analysis" style="width: 50px;"/>
+<img src="http://pablofernandez.com/stockmarket/imgs/A.png" alt="Sentiment Analysis" style="width: 35px;"/>
+```
+```
+
+<img src="http://pablofernandez.com/stockmarket/imgs/B.png" alt="Sentiment Analysis" style="width: 35px;"/>
+```
+```
+<img src="http://pablofernandez.com/stockmarket/imgs/C.png" alt="Sentiment Analysis" style="width: 35px;"/>
+```
+```
+<img src="http://pablofernandez.com/stockmarket/imgs/D.png" alt="Sentiment Analysis" style="width: 35px;"/>
+```
+```
 

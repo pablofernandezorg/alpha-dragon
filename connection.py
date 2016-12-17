@@ -1,10 +1,5 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Dec  1 21:58:58 2016
-
-@author: pablofernandez
-"""
 import pymysql.cursors
 
 def connection():

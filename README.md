@@ -37,7 +37,7 @@ Short Term Sentiment Scale (1 Day Average)
     1   Significant Positive Sentiment  >50
 ```
 
-Trading Volume Discrepancies
+Share Trading Volume Discrepancies
 -----------
 ```
     0   Unusually Low Volume       0,1

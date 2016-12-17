@@ -63,5 +63,6 @@ for test in NeuralTesting:
     print("Correct ", test["Output1"], ",", test["Output2"] ,"")
     print("AI      ", outputs)
    
+
 Network.save("test_binary.json", network)
 print(outputs)

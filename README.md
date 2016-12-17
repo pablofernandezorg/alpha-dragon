@@ -1,4 +1,4 @@
-Neural Markets
+Artificial Market Intelligence 
 ========
 
 I have created an AI software program that is capable of tracking thousands of Tweets per minute to create actionable predictions in the stock market. The algorithm runs a sentiment analysis on all stocks being tracked, and combines this data with proven technical indicators to train the neural network. 

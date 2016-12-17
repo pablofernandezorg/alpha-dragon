@@ -145,13 +145,13 @@ Data Training
 ```
 ```
 
-<img src="http://pablofernandez.com/stockmarket/imgs/B.png" alt="Sentiment Analysis" height="110px"/>
+<img src="http://pablofernandez.com/stockmarket/imgs/B.png" alt="Sentiment Analysis" height="125px"/>
 ```
 ```
 <img src="http://pablofernandez.com/stockmarket/imgs/C.png" alt="Sentiment Analysis" height="130px"/>
 ```
 ```
-<img src="http://pablofernandez.com/stockmarket/imgs/D.png" alt="Sentiment Analysis" height="130px"/>
+<img src="http://pablofernandez.com/stockmarket/imgs/D.png" alt="Sentiment Analysis" height="115px"/>
 ```
 ```
 

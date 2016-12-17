@@ -14,7 +14,7 @@ import json
 import datetime
 import pprint
 
-FILENAME = "prediction.json" 
+FILENAME = "tweets.json" 
         
 def append_no_duplicates(original, msgs):
     print ("Appending tweets")

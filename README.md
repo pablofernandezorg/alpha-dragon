@@ -4,10 +4,9 @@ Neural Markets
 I have created an AI software program that is capable of tracking thousands of Tweets per minute to create actionable predictions in the stock market. The algorithm runs a sentiment analysis on all stocks being tracked, and combines this data with proven technical indicators to train the neural network. 
 
 
+Long Term Sentiment Scale (30 Day Moving Average)
+-----------
 ```
-user@linux:~/openalpr$ alpr ./samplecar.png
-
-Long Term Sentiment Scale
     0   General Negative Sentiment     <95
     0.1                                96
     0.2                                97
@@ -19,7 +18,24 @@ Long Term Sentiment Scale
     0.8                                103
     0.9                                104
     1   General Positive Sentiment    >105
+```
 
+
+Short Term Sentiment Scale (1 Day Average)
+-----------
+```
+#  
+#    0   Extremelly Negative Sentiment <-40
+#    0.1                                -40 - -30  
+#    0.2                                -30 - -20
+#    0.3                                -20 - -10
+#    0.4                                -10 - -0 
+#    0.5 Neutral                         0
+#    0.6                                 0  - 10
+#    0.7                                 10 - 20
+#    0.8                                 20 - 30
+#    0.9                                 30 - 40
+#    1   Significant Positive Sentiment    >50
 ```
 
 

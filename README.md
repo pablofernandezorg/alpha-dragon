@@ -5,6 +5,24 @@ Created by Pablo Fernandez. Copyright 2016.
 I have created an AI software program that is capable of tracking thousands of Tweets per minute to create actionable predictions in the stock market. The algorithm runs a sentiment analysis on all stocks being tracked, and combines this data with proven technical indicators to train the neural network. 
 
 
+Module Distribution
+-----------
+```
+    main.py          #    Main file used to import, analyze, and store information
+    modify.py        #    Parsing twitter information
+    fetchdata.py     #    Fetch data from Twitter & Yahoo finance 
+    pulldata.py      #    Pull any sort of information from the database
+    insertdata.py    #    Insert tweets & stock prices into database    
+    analysis.py      #    Scoring API for language analysis
+    update.py        #    Push any sort Of update to the database
+    connection.py    #    Confidential Server Database Authentication & Connection
+    networktrain.py  #    Runs all the calculations needed for the neural network
+    
+    /neuralnetwork/
+    neuralnetwork.py #    Creates the Neural Network and trains it with the database
+    
+```
+
 Price Movement
 -----------
 ```

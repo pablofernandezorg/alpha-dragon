@@ -7,9 +7,9 @@ I have created an AI software program that is capable of tracking thousands of T
 Price Movement
 -----------
 ```
-  [0.0, 0.0]    Stock price decreased
-  [0.5, 0.5]    Stock price changed less than 1%
-  [1.0, 1.0]    Stock price increased
+    [0.0, 0.0]    Stock price decreased
+    [0.5, 0.5]    Stock price changed less than 1%
+    [1.0, 1.0]    Stock price increased
 ```
 
 
@@ -78,6 +78,18 @@ Twitter Volume Discrepancies
     1   Unusually High Volume      19,20
 ```
 
+200 Day Moving Average
+-----------
+```
+    Compare price data against this calculation
+```
+
+
+5 Day Moving Average
+-----------
+```
+    Compare price data against this calculation
+```
 
 
 

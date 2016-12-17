@@ -81,17 +81,34 @@ Twitter Volume Discrepancies
 200 Day Moving Average
 -----------
 ```
-    Compare price data against this calculation
+    Compare stock price data against this calculation
 ```
 
 
 5 Day Moving Average
 -----------
 ```
-    Compare price data against this calculation
+    Compare stock price data against this calculation
 ```
 
-
+Additional Data Used In Neural Network
+-----------
+```
+    Trading Season
+    Trading Day
+    News Headlines
+    Open Price
+    Close Price
+    High Price
+    Tweet Likes
+    User Sentiment
+    Average Tweet Volume (30 Days)
+    Average Tweet Volume (60 Days)
+    Average Tweet Volume (90 Days)
+    Average News Headlines (30 Days)
+    Average Market Sentiment (30 Days)
+    Average Trading Volume (90 Days)
+```
 
 http://www.snowflakeco.com/live/software/recognition/api/CLOUD_ANALYZE.php?URL={ImageURL}
 

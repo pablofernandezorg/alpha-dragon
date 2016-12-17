@@ -4,7 +4,23 @@ Neural Markets
 I have created an AI software program that is capable of tracking thousands of Tweets per minute to create actionable predictions in the stock market. The algorithm runs a sentiment analysis on all stocks being tracked, and combines this data with proven technical indicators to train the neural network. 
 
 
+```
+user@linux:~/openalpr$ alpr ./samplecar.png
 
+Long Term Sentiment Scale
+    0   General Negative Sentiment     <95
+    0.1                                96
+    0.2                                97
+    0.3                                98
+    0.4                                99
+    0.5 Average                        100
+    0.6                                101
+    0.7                                102
+    0.8                                103
+    0.9                                104
+    1   General Positive Sentiment    >105
+
+```
 
 
 
@@ -27,22 +43,7 @@ For example, the following output is created by analyzing this image:
 
 
 
-```
-user@linux:~/openalpr$ alpr ./samplecar.png
 
-plate0: top 10 results -- Processing Time = 58.1879ms.
-    - PE3R2X     confidence: 88.9371
-    - PE32X      confidence: 78.1385
-    - PE3R2      confidence: 77.5444
-    - PE3R2Y     confidence: 76.1448
-    - P63R2X     confidence: 72.9016
-    - FE3R2X     confidence: 72.1147
-    - PE32       confidence: 66.7458
-    - PE32Y      confidence: 65.3462
-    - P632X      confidence: 62.1031
-    - P63R2      confidence: 61.5089
-
-```
 
 Detailed command line usage:
 

@@ -67,6 +67,29 @@ Twitter Volume Discrepancies
     0.8                            15,16
     0.9                            17,18
     1   Unusually High Volume      19,20
+    
+        DailyTweets_Count = int(DailyTweets_Count)
+    TVA_Total         = int(TVA_Total)
+    if(DailyTweets_Count>MAV_Averg):
+        Sub_Process = (DailyTweets_Count / TVA_Total)
+        Sub_Process = 10 * Sub_Process
+        TweetsNormalized = Sub_Process
+        if(Sub_Process>20):    # Maximum Volume Increase Is Double
+            Sub_Process = 20 
+            TweetsNormalized = Sub_Process
+        elif(Sub_Process<10):   # This shouldn't ever happen
+            Sub_Process = 10
+            TweetsNormalized = Sub_Process
+    elif(DailyTweets_Count<TVA_Total):
+        Sub_Process = (DailyTweets_Count / TVA_Total)
+        Sub_Process = 10 * Sub_Process
+        TweetsNormalized = Sub_Process 
+        if(Sub_Process<0):    # No Negatives Allowed
+            Sub_Process = 0 
+            TweetsNormalized = Sub_Process
+        elif(Sub_Process>10):  # This shouldn't ever happen
+            Sub_Process = 10
+            TweetsNormalized = Sub_Process
 ```
 
 

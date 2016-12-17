@@ -53,6 +53,23 @@ Trading Volume Discrepancies
     1   Unusually High Volume      19,20
 ```
 
+Twitter Volume Discrepancies
+-----------
+```
+    0   Unusually Low Volume       0,1
+    0.1                            2,3
+    0.2                            4,5
+    0.3                            6,7
+    0.4                            8,9
+    0.5 Average                    10
+    0.6                            11,12
+    0.7                            13,14
+    0.8                            15,16
+    0.9                            17,18
+    1   Unusually High Volume      19,20
+```
+
+
 
 
 http://www.snowflakeco.com/live/software/recognition/api/CLOUD_ANALYZE.php?URL={ImageURL}

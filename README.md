@@ -214,3 +214,5 @@ During extremelly big stock movements, either due to product releases or major a
 handle the massive amounts of Tweets (100s/second). Since the program runs every 15 mins, and is limited by StockTwits
 API, some of the posts may not be saved in time. 
 
+Additionally, implementation of more calculations using Headlines and other news in relation to a particular trading
+day could be used in the future. 

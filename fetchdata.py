@@ -1,21 +1,5 @@
 #!/usr/local/bin/python
-#/usr/local/bin/python
 # -*- coding: utf-8 -*-
-
-"""
-******************************************************************************
-Intellecutal Property Notice:
-
-The following confidential program contains algorithms written by Pablo Fernandez
-that may eventually be sold or used in a commerical setting. 
-
-Please do not share or distribute this program. Copyright 2016. 
-
-Thank you.
-Pablo Fernandez
-www.pablofernandez.com
-******************************************************************************
-"""
 
 import insertdata
 try:

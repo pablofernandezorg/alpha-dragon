@@ -8,6 +8,7 @@ class Network(object):
     """
         A neural network which contains multiple layers
         Note:
+        
             The first layer is called the input layer
             The last layer is called the output layer
             All the layers inbetween are called hidden layers

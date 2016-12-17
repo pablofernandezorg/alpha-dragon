@@ -24,20 +24,34 @@ Long Term Sentiment Scale (30 Day Moving Average)
 Short Term Sentiment Scale (1 Day Average)
 -----------
 ```
-    0   Extremelly Negative Sentiment <-40
-    0.1                                -40 - -30  
-    0.2                                -30 - -20
-    0.3                                -20 - -10
-    0.4                                -10 - -0 
-    0.5 Neutral                         0
-    0.6                                 0  - 10
-    0.7                                 10 - 20
-    0.8                                 20 - 30
-    0.9                                 30 - 40
-    1   Significant Positive Sentiment    >50
+    0   Extremelly Negative Sentiment  <-40
+    0.1                                 -40 - -30  
+    0.2                                 -30 - -20
+    0.3                                 -20 - -10
+    0.4                                 -10 - -0 
+    0.5 Neutral                          0
+    0.6                                  0  - 10
+    0.7                                  10 - 20
+    0.8                                  20 - 30
+    0.9                                  30 - 40
+    1   Significant Positive Sentiment  >50
 ```
 
-
+Trading Volume Discrepancies
+-----------
+```
+    0   Unusually Low Volume       0,1
+    0.1                            2,3
+    0.2                            4,5
+    0.3                            6,7
+    0.4                            8,9
+    0.5 Average                    10
+    0.6                            11,12
+    0.7                            13,14
+    0.8                            15,16
+    0.9                            17,18
+    1   Unusually High Volume      19,20
+```
 
 
 

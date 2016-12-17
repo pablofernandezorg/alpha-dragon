@@ -15,7 +15,7 @@ class Layer(object):
             @returns (Layer)
         """
         self.neurons = [Neuron(num_inputs, activation, derivative) for i in range(0, num_neurons, 1)]
-
+        
     def process(self, inputs):
         """
             Processes a set of inputs

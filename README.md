@@ -108,6 +108,41 @@ Additional Data Used In Neural Network
     Average Trading Volume   [90 Days]
 ```
 
+Initializing Neural Network
+-----------
+```
+    network = Network()
+    network.add_layer(8, 8, Network.ACTIVATION_SIGMOID) # Hidden Layer, 10 Neurons, 8 inputs
+    network.add_layer(2, 8, Network.ACTIVATION_SIGMOID) # Output Layer,  2 Neurons, 8 inputs  
+```
+
+Configurations
+-----------
+```
+  ITERATIONS = 500  
+  LEARN_RATE = 0.03 
+  THRESHOLD  = 0.001
+
+```
+
+Data Training
+-----------
+```
+   for set in NeuralTraining:  
+        print("Finding hidden Robots...")
+        train = [
+            set["DayOfWeek"],         set["TradingMonth"], 
+            set["VolumeNormalized"],  set["AboveBigMoving"],
+            set["BelowLittleMoving"], set["TweetsVolumeNormalized"], 
+            set["Sentiment"],         set["Sentiment30"]
+        ]
+        Output1 = set["Output1"]
+        Output2 = set["Output2"]
+        error += network.train(train, [Output1, Output2], LEARN_RATE)
+```
+
+
+
 http://www.snowflakeco.com/live/software/recognition/api/CLOUD_ANALYZE.php?URL={ImageURL}
 
 

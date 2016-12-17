@@ -155,3 +155,9 @@ Data Training
 ```
 ```
 
+Future Improvements
+-----------
+During extremelly big stock movements, either due to product releases or major announcements, the algorithm cannot
+handle the massive amounts of Tweets (100s/second). Since the program runs every 15 mins, and is limited by StockTwits
+API, some of the posts may not be saved in time. 
+

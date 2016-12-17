@@ -141,50 +141,8 @@ Data Training
         error += network.train(train, [Output1, Output2], LEARN_RATE)
 ```
 
+<img src="http://pablofernandez.com/stockmarket/imgs/A.png" alt="Sentiment Analysis" style="width: 50px;"/>
+<img src="http://pablofernandez.com/stockmarket/imgs/B.png" alt="Sentiment Analysis" style="width: 50px;"/>
+<img src="http://pablofernandez.com/stockmarket/imgs/C.png" alt="Sentiment Analysis" style="width: 50px;"/>
+<img src="http://pablofernandez.com/stockmarket/imgs/D.png" alt="Sentiment Analysis" style="width: 50px;"/>
 
-
-http://www.snowflakeco.com/live/software/recognition/api/CLOUD_ANALYZE.php?URL={ImageURL}
-
-
-![Plate Image](ExampleResults.png "Input image")
-
-
-User Guide
------------
-
-OpenALPR includes a command line utility.  Simply typing "alpr [image file path]" is enough to get started recognizing license plate images.
-
-For example, the following output is created by analyzing this image:
-
-![Plate Image](http://www.openalpr.com/images/demoscreenshots/plate3.png "Input image")
-
-
-
-
-
-Detailed command line usage:
-
-```
-user@linux:~/openalpr$ alpr --help
-
-USAGE: 
-
-   alpr  [-c <country_code>] [--config <config_file>] [-n <topN>] [--seek
-         <integer_ms>] [-p <pattern code>] [--clock] [-d] [-j] [--]
-         
-         
-         
-         
-         
-         
-        
-
-Modules
------------------------------------------------------
-modify        #    Parsing Twitter Input Values
-analysis      #    **CONFIDENTIAL Scoring Algorithm For Language & Trends
-connection    #    **CONFIDENTIAL Server Database Authentication & Connection
-fetchdata     #    Fetch Data From Twitter & Yahoo Finance 
-pulldata      #    Pull Any Sort Of Information From The Database
-insertdata    #    Insert Tweets & Stock Prices Into Database
-update        #    Push Any Sort Of Update To The Database

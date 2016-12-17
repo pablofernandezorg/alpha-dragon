@@ -4,6 +4,15 @@ Neural Markets
 I have created an AI software program that is capable of tracking thousands of Tweets per minute to create actionable predictions in the stock market. The algorithm runs a sentiment analysis on all stocks being tracked, and combines this data with proven technical indicators to train the neural network. 
 
 
+Price Movement
+-----------
+```
+  [0.0, 0.0]    Stock price decreased
+  [0.5, 0.5]    Stock price changed less than 1%
+  [1.0, 1.0]    Stock price increased
+```
+
+
 Long Term Sentiment Scale (30 Day Moving Average)
 -----------
 ```

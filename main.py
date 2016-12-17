@@ -16,43 +16,6 @@ www.pablofernandez.com
 ******************************************************************************
 """
 
-"""
-Modules
------------------------------------------------------
-modify        #    Parsing Twitter Input Values
-analysis      #    **CONFIDENTIAL Scoring Algorithm For Language & Trends
-connection    #    **CONFIDENTIAL Server Database Authentication & Connection
-fetchdata     #    Fetch Data From Twitter & Yahoo Finance 
-pulldata      #    Pull Any Sort Of Information From The Database
-insertdata    #    Insert Tweets & Stock Prices Into Database
-update        #    Push Any Sort Of Update To The Database
-
-Cron Jobs
------------------------------------------------------
-Currently tracking 47 stocks every 15 mins on /home/pablofernandez/public_html/cgi-bin/stocktwits.py
-Remove garbage tweets every hour  /public_html/stockmarket/update_http_broken_tweets.php
-
-
-Neural Network
-Data Set
-
-[1, 5]                 - Day of Week (Seasonality, Numerical)
-[1, 23]                - Trading Day (Seasonality, Numerical)
-[1, 12]                - Month (Seasonality, Numerical)
-[0, 20]                - Volume (% Difference From Average, Normalized In Percentiles)
-[0, 1]  False / True   - Above the 200 Day Moving Average (Normally Bullish Indicator)
-[0, 1]  False / True   - Below the 5 Day Moving Average (Normally Bullish Indicator)
-[0, 20]                - % Above / Below the 5 Day Moving Average (Normally Lower The Better, 5% Lowest Values Recorded Over X Months, Normalized In Percentiles)
-[0, 10]                - Headlines And Commotion In The News
-[0, 20]                - % Above / Below the Average Twitter Volume For That Stock
-[0, 200]               - Sentiment Analysis (Check back for liked Tweets and add credibility to magnify (-/+) score x0.15)
-
-Goal  
-[0, 3]    - Stock went down
-[1, 4]    - Neutral  (Change less then 1%)
-[2, 5]    - Stock went up
-"""
-
 import fetchdata
 import pulldata
 import connection

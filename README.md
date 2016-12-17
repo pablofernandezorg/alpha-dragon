@@ -97,17 +97,15 @@ Additional Data Used In Neural Network
     Trading Season
     Trading Day
     News Headlines
-    Open Price
-    Close Price
-    High Price
+    Price Date               [Open, Low, High, Close]
     Tweet Likes
     User Sentiment
-    Average Tweet Volume (30 Days)
-    Average Tweet Volume (60 Days)
-    Average Tweet Volume (90 Days)
-    Average News Headlines (30 Days)
-    Average Market Sentiment (30 Days)
-    Average Trading Volume (90 Days)
+    Average Tweet Volume     [30 Days]
+    Average Tweet Volume     [60 Days]
+    Average Tweet Volume     [90 Days]
+    Average News Headlines   [30 Days]
+    Average Market Sentiment [30 Days]
+    Average Trading Volume   [90 Days]
 ```
 
 http://www.snowflakeco.com/live/software/recognition/api/CLOUD_ANALYZE.php?URL={ImageURL}

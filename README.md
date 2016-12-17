@@ -143,16 +143,45 @@ Data Training
 
 <img src="http://pablofernandez.com/stockmarket/imgs/A.png" alt="Sentiment Analysis" height="110px"/>
 ```
+Positive:        64.08
+Negative:        35.91
+Neutral:         61.45
+
+No Bullish / Bearish Indicator Detected
+
+Final Analysis:        +28.0 
 ```
 
 <img src="http://pablofernandez.com/stockmarket/imgs/B.png" alt="Sentiment Analysis" height="118px"/>
 ```
+Positive:        64.08
+Negative:        35.91
+Neutral:         61.45
+
+No Bullish / Bearish Indicator Detected
+
+Final Analysis:        +28.0 
 ```
 <img src="http://pablofernandez.com/stockmarket/imgs/C.png" alt="Sentiment Analysis" height="130px"/>
 ```
+Positive:        64.08
+Negative:        35.91
+Neutral:         61.45
+
+No Bullish / Bearish Indicator Detected
+
+Final Analysis:        +28.0 
 ```
+
 <img src="http://pablofernandez.com/stockmarket/imgs/D.png" alt="Sentiment Analysis" height="127px"/>
 ```
+Positive:        64.08
+Negative:        35.91
+Neutral:         61.45
+
+No Bullish / Bearish Indicator Detected
+
+Final Analysis:        +28.0 
 ```
 
 Future Improvements

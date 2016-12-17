@@ -148,40 +148,44 @@ Negative:        35.91
 Neutral:         61.45
 
 No Bullish / Bearish Indicator Detected
+1x Likes                         x0.15 Score Boost / Ea
 
-Final Analysis:        +28.0 
+Final Analysis:  +31.0     [-100,100]
 ```
 
 <img src="http://pablofernandez.com/stockmarket/imgs/B.png" alt="Sentiment Analysis" height="118px"/>
+
 ```
-Positive:        64.08
-Negative:        35.91
-Neutral:         61.45
+Positive:        29.58
+Negative:        70.41
+Neutral:         56.21
 
 No Bullish / Bearish Indicator Detected
 
-Final Analysis:        +28.0 
+Final Analysis:  -41.0     [-100,100]  
 ```
 <img src="http://pablofernandez.com/stockmarket/imgs/C.png" alt="Sentiment Analysis" height="130px"/>
 ```
-Positive:        64.08
-Negative:        35.91
-Neutral:         61.45
+Positive:        30.45
+Negative:        69.54
+Neutral:         74.91
 
-No Bullish / Bearish Indicator Detected
+Bearish Indicator Detected
 
-Final Analysis:        +28.0 
+Final Analysis:  -70.0     [-100,100]  
 ```
 
 <img src="http://pablofernandez.com/stockmarket/imgs/D.png" alt="Sentiment Analysis" height="127px"/>
 ```
-Positive:        64.08
-Negative:        35.91
-Neutral:         61.45
 
-No Bullish / Bearish Indicator Detected
+Positive:        36.84
+Negative:        63.15
+Neutral:         83.33
 
-Final Analysis:        +28.0 
+Bullish Indicator Detected
+2x Likes                         x0.15 Score Boost / Ea
+
+Final Analysis:  +48     [-100,100] 
 ```
 
 Future Improvements

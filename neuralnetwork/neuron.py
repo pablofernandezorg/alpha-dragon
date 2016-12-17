@@ -1,6 +1,7 @@
 import random
 import math
 
+
 class Neuron(object):
     """
         A neuron is a stage of a neural network (sometimes called Nodes)

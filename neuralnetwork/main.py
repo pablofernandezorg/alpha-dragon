@@ -33,7 +33,7 @@ for i in range(0, ITERATIONS, 1):
     for set in NeuralTraining:  
         print("Finding hidden Robots...")
         train = [
-            set["DayOfWeek"],         set["TradingMonth"], 
+            set["TradingDay"],        set["TradingSeason"], 
             set["VolumeNormalized"],  set["AboveBigMoving"],
             set["BelowLittleMoving"], set["TweetsVolumeNormalized"], 
             set["Sentiment"],         set["Sentiment30"]

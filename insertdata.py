@@ -1,6 +1,21 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+******************************************************************************
+Intellecutal Property Notice:
+
+The following confidential program contains algorithms written by Pablo Fernandez
+that may eventually be sold or used in a commerical setting. 
+
+Please do not share or distribute this program. Copyright 2016. 
+
+Thank you.
+Pablo Fernandez
+www.pablofernandez.com
+******************************************************************************
+"""
+
 try:
     import urllib.request as urllib2
 except ImportError:
@@ -28,7 +43,6 @@ def insert_database(connection, Unique_Entry, Date, User_Sentiment, Total_Likes,
     
     finally:
         print("DO NOT CLOSE CONNECTION")
-        #connection.close()
         
 def insert_stockprices(counter, connection, Unique_Entry, Date, Open_Price, High_Price, Low_Price, Closing_Price, Volume, Ticker):
     try:

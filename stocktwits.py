@@ -1,6 +1,5 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
-
 """
 ******************************************************************************
 Intellecutal Property Notice:
@@ -20,7 +19,7 @@ www.pablofernandez.com
 Modules
 -----------------------------------------------------
 modify        #    Parsing Twitter Input Values
-analysis      #    **CONFIDENTIAL Scoring Algorithm For Language & Trends
+analysis      #    Scoring Algorithm For Language & Trends
 connection    #    **CONFIDENTIAL Server Database Authentication & Connection
 fetchdata     #    Fetch Data From Twitter & Yahoo Finance 
 pulldata      #    Pull Any Sort Of Information From The Database
@@ -31,26 +30,6 @@ Cron Jobs
 -----------------------------------------------------
 Currently tracking 47 stocks every 15 mins on /home/pablofernandez/public_html/cgi-bin/stocktwits.py
 Remove garbage tweets every hour  /public_html/stockmarket/update_http_broken_tweets.php
-
-
-Neural Network
-Data Set
-
-[1, 5]                 - Day of Week (Seasonality, Numerical)
-[1, 23]                - Trading Day (Seasonality, Numerical)
-[1, 12]                - Month (Seasonality, Numerical)
-[0, 20]                - Volume (% Difference From Average, Normalized In Percentiles)
-[0, 1]  False / True   - Above the 200 Day Moving Average (Normally Bullish Indicator)
-[0, 1]  False / True   - Below the 5 Day Moving Average (Normally Bullish Indicator)
-[0, 20]                - % Above / Below the 5 Day Moving Average (Normally Lower The Better, 5% Lowest Values Recorded Over X Months, Normalized In Percentiles)
-[0, 10]                - Headlines And Commotion In The News
-[0, 20]                - % Above / Below the Average Twitter Volume For That Stock
-[0, 200]               - Sentiment Analysis (Check back for liked Tweets and add credibility to magnify (-/+) score x0.15)
-
-Goal  
-[0, 3]    - Stock went down
-[1, 4]    - Neutral  (Change less then 1%)
-[2, 5]    - Stock went up
 """
 
 import fetchdata
@@ -81,7 +60,7 @@ def append_no_duplicates(original, msgs):
 
 def cull_age_limit(original, age_limit=30):
     # cull all tweets over age_limit days old
-    print ("Culling tweets that are more than", age_limit, "days old")
+    print ("Deleting tweets that are more than", age_limit, "days old")
     threshold = datetime.datetime.now() - datetime.timedelta(age_limit)
     result = {}
     for ticker in original.keys():
@@ -110,7 +89,7 @@ def main():
     active      = pulldata.pull_active_stocks(connect)
                         
     for stock in active:
-        ticker = stock["Ticker"]
+        ticker = stock["Ticker"].rstrip()
         ticker_list.append(ticker)
         
     for ticker_sybmbol in ticker_list:
@@ -121,14 +100,18 @@ def main():
     new = cull_age_limit(new)
     write_to_file(FILENAME, new)
     
-    for ticker_sybmbol in ticker_list:
-        fetchdata.fetch_saved_tweets(connect, FILENAME, ticker_sybmbol)
+    for stock in active:
+        ticker_sybmbol = stock["Ticker"].rstrip()
+        ticker_company = stock["Company"].rstrip()
+        fetchdata.fetch_saved_tweets(connect, FILENAME, ticker_sybmbol, ticker_company)
 
     for ticker_sybmbol in ticker_list:
         pulldata.pull_tweets_not_analyzed(connect, ticker_sybmbol)
                 
+                
     erase_temporary_file(FILENAME)
     connect.close()
+    print("*********** Program Completed ***********")
     
 if __name__ == "__main__":
     main()

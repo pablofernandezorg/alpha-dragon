@@ -37,11 +37,12 @@ def pull_tweets_not_analyzed(connection, ticker):
         unique_entry = row["Unique_Entry"]
         status = update.update_analysis(connection, unique_entry, score)
         if(status == "Success"):
-            print("Updated Entry")
-
+            print("Updated Analysis")    
+    update.last_analysis(connection, ticker)
+    
 def pull_active_stocks(connection):
     with connection.cursor() as cursor:
-        sql = "SELECT * FROM `Stocks` WHERE `Status`='Active'" 
+        sql = "SELECT * FROM `Stocks` WHERE `Status`='Active' LIMIT 2" 
         cursor.execute(sql, ())
         connection.commit()
         stocks = cursor.fetchall()

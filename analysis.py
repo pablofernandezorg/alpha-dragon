@@ -1,7 +1,143 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+******************************************************************************
+Intellecutal Property Notice:
+
+The following confidential program contains algorithms written by Pablo Fernandez
+that may eventually be sold or used in a commerical setting. 
+
+Please do not share or distribute this program. Copyright 2016. 
+
+Thank you.
+Pablo Fernandez
+www.pablofernandez.com
+******************************************************************************
+"""
+
 import requests
+
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
 
 positive_words = ["great", "positive", "bullish", "rising", "short squeeze", "successful", "long", "buy", "bought", "call", "profit", "buy rating"]
 negative_words = ["bleed", "crap", "drop", "bearish", "falling", "terrible", "sad", "poor", "negative", "plumet", "sell", "sold", "puts", "junk", "failure"]
@@ -35,4 +171,125 @@ def tweet_analysis(content, hint, entry):
     print("Positive:       ", positive)
     print("Negative:       ", negative)
     print("Neutral:        ", neutral)
-    return total_score   
+    return total_score
+    
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************
+    #**************************** CONFIDENTIAL INFORMATION **************************    

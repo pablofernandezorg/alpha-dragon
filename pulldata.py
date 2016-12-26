@@ -26,14 +26,14 @@ import update
 
 def pull_tweets_not_analyzed(connection, ticker):
     with connection.cursor() as cursor:
-        sql = "SELECT * FROM `StockTweets` WHERE `Ticker`=%s AND `Tweet_Sentiment`='0'" 
+        sql = "SELECT * FROM `StockTweets` WHERE `Tweet_Sentiment`='0' ORDER BY RAND() LIMIT 100" 
         cursor.execute(sql, (ticker))
         connection.commit()
         result = cursor.fetchall()
         numrows = cursor.rowcount
         
     for row in result:
-        score = analysis.tweet_analysis(row["Tweet_Content"], row["User_Sentiment"], row["Unique_Entry"])
+        score = analysis.sentiment_analysis_ultra(row["Tweet_Content"], row["User_Sentiment"], row["Unique_Entry"])
         unique_entry = row["Unique_Entry"]
         status = update.update_analysis(connection, unique_entry, score)
         if(status == "Success"):
@@ -42,7 +42,7 @@ def pull_tweets_not_analyzed(connection, ticker):
     
 def pull_active_stocks(connection):
     with connection.cursor() as cursor:
-        sql = "SELECT * FROM `Stocks` WHERE `Status`='Active' LIMIT 2" 
+        sql = "SELECT * FROM `Stocks` WHERE `Status`='Active' ORDER BY RAND() LIMIT 50" 
         cursor.execute(sql, ())
         connection.commit()
         stocks = cursor.fetchall()

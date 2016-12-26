@@ -143,7 +143,7 @@ import update
 positive_words = ["great", "positive", "bullish", "rising", "short squeeze", "successful", "long", "buy", "bought", "call", "profit", "buy rating"]
 negative_words = ["bleed", "crap", "drop", "bearish", "falling", "terrible", "sad", "poor", "negative", "plumet", "sell", "sold", "puts", "junk", "failure"]
 
-def sentiment_analysis_ultra(content, hint, entry, ticker_symbol):                            
+def sentiment_analysis_ultra(content, hint, entry, ticker_symbol, connection):                            
     url     = "https://japerk-text-processing.p.mashape.com/sentiment/"
     payload = { 'text' : content , 'language' : 'english' }
     headers = { 'X-Mashape-Key' : 'gUG3dwBilimshEMaMrYCY1cE1AW9p1b4zryjsne7zNuvHMKi0H' , 'Content-Type' : 'application/x-www-form-urlencoded', 'Accept' : 'application/json'}
@@ -176,7 +176,7 @@ def sentiment_analysis_ultra(content, hint, entry, ticker_symbol):
     update.month_pulls_ultra(connection, ticker_symbol)
     return total_score
 
-def sentiment_analysis_pro(content, hint, entry, ticker_symbol):                            
+def sentiment_analysis_pro(content, hint, entry, ticker_symbol, connection):                            
     url     = "https://japerk-text-processing.p.mashape.com/sentiment/"
     payload = { 'text' : content , 'language' : 'english' }
     headers = { 'X-Mashape-Key' : 'yeJu4D3OAxmshiWcaCQTUmaNJP6Wp1ezvrGjsnboefFhsLgc5c' , 'Content-Type' : 'application/x-www-form-urlencoded', 'Accept' : 'application/json'}
@@ -209,7 +209,7 @@ def sentiment_analysis_pro(content, hint, entry, ticker_symbol):
     update.month_pulls_pro(connection, ticker_symbol)
     return total_score
     
-def sentiment_analysis_basic(content, hint, entry, ticker_symbol):
+def sentiment_analysis_basic(content, hint, entry, ticker_symbol, connection):
     url     = "http://text-processing.com/api/sentiment/"
     payload = { 'text' : content }
     headers = {}

@@ -17,6 +17,9 @@ www.pablofernandez.com
 """
 
 import insertdata
+import modify
+import update
+
 try:
     import urllib.request as urllib2
 except ImportError:
@@ -90,7 +93,7 @@ def fetch_tweets(ticker):
     return data
     
     
-def fetch_saved_tweets(connection, filename, ticker):
+def fetch_saved_tweets(connection, filename, ticker, ticker_company):
     with open(filename) as data_file:    
         data = json.load(data_file)
 
@@ -119,15 +122,20 @@ def fetch_saved_tweets(connection, filename, ticker):
         Ticker              = ticker
         
         position = position + 1
+        
+        print("")
+        print(ticker_company)        
         print("----------------------------- Tweet: ", position)
-        print("Entry    :    ", Unique_Entry)        
+        print("Entry         ", Unique_Entry)        
         print("Date:         ", Date)
         print("Total Likes:  ", Total_Likes)
         print("Username:     ", Username)
         print("Tweet Body:   ", Tweet_Content)
-        
-        insertdata.insert_database(connection, Unique_Entry, Date, User_Sentiment, Total_Likes, Username, Tweet_Content, Tweet_Sentiment, Tweet_Analysis, Ticker)
+        print("----------------------------- ")
 
+        Tweet_Content = connection.escape(Tweet_Content)
+        Tweet_Content = modify.sanitize_data(Tweet_Content)
+        insertdata.insert_database(connection, Unique_Entry, Date, User_Sentiment, Total_Likes, Username, Tweet_Content, Tweet_Sentiment, Tweet_Analysis, Ticker)
     
 def get_tweets_list(tickers):
     ret = {}

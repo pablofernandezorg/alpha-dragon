@@ -1,10 +1,57 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+******************************************************************************
+Intellecutal Property Notice:
+
+The following confidential program contains algorithms written by Pablo Fernandez
+that may eventually be sold or used in a commerical setting. 
+
+Please do not share or distribute this program. Copyright 2016. 
+
+Thank you.
+Pablo Fernandez
+www.pablofernandez.com
+******************************************************************************
+"""
+
+from datetime import datetime, timedelta
+import os, time
+
+os.environ['TZ'] = 'America/Los_Angeles'
+time.tzset()
+
 def update_analysis(connection, unique_entry, score):
     cursor = connection.cursor()
     sql = "UPDATE StockTweets SET Tweet_Sentiment='%s' WHERE Unique_Entry='%s'"
     cursor.execute(sql, (score, unique_entry))
     connection.commit()
     return "Success"
-            
+    
+def last_fetch(connection, ticker):
+    date_check  = datetime.today() - timedelta(days=0)
+    today       = date_check.strftime('%H:%M:%S %m-%d-%Y')                
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Last_Fetch=%s WHERE Ticker=%s"
+    cursor.execute(sql, (today, ticker))
+    connection.commit()
+    return "Success"
+
+def last_analysis(connection, ticker):
+    date_check  = datetime.today() - timedelta(days=0)
+    today       = date_check.strftime('%H:%M:%S %m-%d-%Y')                
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Last_Analysis=%s WHERE Ticker=%s"
+    cursor.execute(sql, (today, ticker))
+    connection.commit()
+    return "Success"
+
+def last_prices(connection, ticker):
+    date_check  = datetime.today() - timedelta(days=0)
+    today       = date_check.strftime('%H:%M:%S %m-%d-%Y')                
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Last_Prices=%s WHERE Ticker=%s"
+    cursor.execute(sql, (today, ticker))
+    connection.commit()
+    return "Success"

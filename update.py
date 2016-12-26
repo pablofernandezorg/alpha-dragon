@@ -55,3 +55,24 @@ def last_prices(connection, ticker):
     cursor.execute(sql, (today, ticker))
     connection.commit()
     return "Success"
+    
+def month_pulls_basic(connection, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Month_Pulls_Basic = Month_Pulls_Basic+1 WHERE Ticker=%s"
+    cursor.execute(sql, (ticker))
+    connection.commit()
+    return "Success"
+    
+def month_pulls_pro(connection, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Month_Pulls_Pro = Month_Pulls_Pro+1 WHERE Ticker=%s"
+    cursor.execute(sql, (ticker))
+    connection.commit()
+    return "Success"
+    
+def month_pulls_ultra(connection, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Month_Pulls_Ultra = Month_Pulls_Ultra+1 WHERE Ticker=%s"
+    cursor.execute(sql, (ticker))
+    connection.commit()
+    return "Success"

@@ -34,7 +34,7 @@ def pull_tweets_not_analyzed(connection):
         
     for row in result:
         ticker_symbol = row["Ticker"]
-        score = analysis.sentiment_analysis_ultra(row["Tweet_Content"], row["User_Sentiment"], row["Unique_Entry"])
+        score = analysis.sentiment_analysis_ultra(row["Tweet_Content"], row["User_Sentiment"], row["Unique_Entry"], ticker_symbol)
         unique_entry = row["Unique_Entry"]
         status = update.update_analysis(connection, unique_entry, score)
         if(status == "Success"):

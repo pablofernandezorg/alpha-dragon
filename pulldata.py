@@ -24,7 +24,7 @@ except ImportError:
 import analysis
 import update
 
-def pull_tweets_not_analyzed(connection, ticker):
+def pull_tweets_not_analyzed(connection):
     with connection.cursor() as cursor:
         sql = "SELECT * FROM `StockTweets` WHERE `Tweet_Sentiment`='0' ORDER BY RAND() LIMIT 100" 
         cursor.execute(sql, (ticker))

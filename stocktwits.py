@@ -91,11 +91,7 @@ def main():
     for stock in active:
         ticker = stock["Ticker"].rstrip()
         ticker_list.append(ticker)
-        
-    for ticker_sybmbol in ticker_list:
-        result = fetchdata.price_data(connect, ticker_sybmbol)
-        pprint.pprint(result)    
-
+          
     new = fetchdata.get_tweets_list(ticker_list)
     new = cull_age_limit(new)
     write_to_file(FILENAME, new)
@@ -104,10 +100,6 @@ def main():
         ticker_sybmbol = stock["Ticker"].rstrip()
         ticker_company = stock["Company"].rstrip()
         fetchdata.fetch_saved_tweets(connect, FILENAME, ticker_sybmbol, ticker_company)
-
-    for ticker_sybmbol in ticker_list:
-        pulldata.pull_tweets_not_analyzed(connect, ticker_sybmbol)
-                
                 
     erase_temporary_file(FILENAME)
     connect.close()

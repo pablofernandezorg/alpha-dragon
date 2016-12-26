@@ -81,17 +81,13 @@ def fetch_historical_prices(symbol, start_date, end_date):
     days = urlopen(url).readlines()    
     data = [day[:-2].decode("ascii").split(',') for day in days][1:]
     return data
-    
+        
 def fetch_tweets(ticker):
-    """
-    This function grabs tweets that mention the stock ticket being searched
-    """
     url = "https://api.stocktwits.com/api/2/streams/symbol/{0}.json".format(ticker)
     tweets = urlopen(url).read()
     print(type(tweets))
     data = json.loads(tweets.decode('utf-8'))
     return data
-    
     
 def fetch_saved_tweets(connection, filename, ticker, ticker_company):
     with open(filename) as data_file:    
@@ -116,12 +112,16 @@ def fetch_saved_tweets(connection, filename, ticker, ticker_company):
             Total_Likes     = 0
         Username            = data[ticker][position]["user"]["username"]
         Tweet_Content       = data[ticker][position]["body"]
-        
+
+   
         Tweet_Sentiment     = "0"
         Tweet_Analysis      = "0"
         Ticker              = ticker
         
         position = position + 1
+
+        Tweet_Content       = connection.escape(Tweet_Content)
+        Tweet_Content       = modify.sanitize_data(Tweet_Content)     
         
         print("")
         print(ticker_company)        
@@ -132,9 +132,6 @@ def fetch_saved_tweets(connection, filename, ticker, ticker_company):
         print("Username:     ", Username)
         print("Tweet Body:   ", Tweet_Content)
         print("----------------------------- ")
-
-        Tweet_Content = connection.escape(Tweet_Content)
-        Tweet_Content = modify.sanitize_data(Tweet_Content)
         insertdata.insert_database(connection, Unique_Entry, Date, User_Sentiment, Total_Likes, Username, Tweet_Content, Tweet_Sentiment, Tweet_Analysis, Ticker)
     
 def get_tweets_list(tickers):

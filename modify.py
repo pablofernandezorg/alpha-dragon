@@ -1,18 +1,32 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
+
+"""
+******************************************************************************
+Intellecutal Property Notice:
+
+The following confidential program contains algorithms written by Pablo Fernandez
+that may eventually be sold or used in a commerical setting. 
+
+Please do not share or distribute this program. Copyright 2016. 
+
+Thank you.
+Pablo Fernandez
+www.pablofernandez.com
+******************************************************************************
+"""
+
+import re
+
 try:
     import urllib.request as urllib2
 except ImportError:
     import urllib2
  
-import re
-
-def remove_emoji(data):
+def sanitize_data(data):
     if data is not None:
-        data = str(data)
-        # Remove Special Characters From Tweet ************************
-        # This line does not work on the server:
-        #data       = data.translate ({ord(c): " " for c in "→!@#%^&*()[]{};:,./<>?\|`~-=_+"})
+        # Remove Special Characters From String ************************    
+        data = re.sub("[^a-zA-Z0-9-_*#%&?:;$()-<+>=!.]", " ", data)
         emoji_pattern = re.compile("["
             u"\U0001F600-\U0001F64F"  # emoticons
             u"\U0001F300-\U0001F5FF"  # symbols & pictographs
@@ -32,7 +46,11 @@ def remove_emoji(data):
             u'[\u2600-\u26FF\u2700-\u27BF])+', 
             re.UNICODE)
         data = emoji_pattern3.sub(r'', data)
-        data = re.sub(r'\W+', ' ', data)
+        data = data.replace("&#39;", "'")
+        data = data.replace("&amp;", "&")
+        data = " ".join(data.split())
+        data = data.lstrip(' ')
+        data.encode('utf-8')        
         return data
     else:
         data = "Empty"

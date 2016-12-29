@@ -1,4 +1,5 @@
-Artificial Market Intelligence 
+Alpha Dragon AI
+www.alphadragon.net
 ========
 Version 4.0. Created by Pablo Fernandez. Copyright 2016. 
 

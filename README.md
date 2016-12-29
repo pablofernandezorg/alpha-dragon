@@ -1,5 +1,5 @@
 Alpha Dragon AI
-www.alphadragon.net
+ww&#8203;w.alphadragon.net
 ========
 Version 4.0. Created by Pablo Fernandez. Copyright 2016. 
 

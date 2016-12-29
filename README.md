@@ -163,7 +163,7 @@ Data Training
         error += network.train(train, [Output1, Output2], LEARN_RATE)
 ```
 
-<img src="http://pablofernandez.com/stockmarket/imgs/A.png" alt="Sentiment Analysis" height="110px"/>
+<img src="http://pablofernandez.com/alphadragon/imgs/A.png" alt="Sentiment Analysis" height="110px"/>
 ```
 Positive:        64.08
 Negative:        35.91
@@ -175,7 +175,7 @@ No Bullish / Bearish Indicator Detected
 Final Analysis:  +31.0     [-100,100]
 ```
 
-<img src="http://pablofernandez.com/stockmarket/imgs/B.png" alt="Sentiment Analysis" height="118px"/>
+<img src="http://pablofernandez.com/alphadragon/imgs/B.png" alt="Sentiment Analysis" height="118px"/>
 
 ```
 Positive:        29.58
@@ -186,7 +186,7 @@ No Bullish / Bearish Indicator Detected
 
 Final Analysis:  -41.0     [-100,100]  
 ```
-<img src="http://pablofernandez.com/stockmarket/imgs/C.png" alt="Sentiment Analysis" height="130px"/>
+<img src="http://pablofernandez.com/alphadragon/imgs/C.png" alt="Sentiment Analysis" height="130px"/>
 ```
 Positive:        30.45
 Negative:        69.54
@@ -197,7 +197,7 @@ Bearish Indicator Detected
 Final Analysis:  -70.0     [-100,100]  
 ```
 
-<img src="http://pablofernandez.com/stockmarket/imgs/D.png" alt="Sentiment Analysis" height="127px"/>
+<img src="http://pablofernandez.com/alphadragon/imgs/D.png" alt="Sentiment Analysis" height="127px"/>
 ```
 
 Positive:        36.84

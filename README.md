@@ -4,7 +4,7 @@ ww<i></i>w.<i></i>alphadragon.net
 
 Version 5.0. Developed by Pablo Fernandez. Copyright 2016. 
 
-Alpa Dragon is an AI software program that analyses investor sentiment across the internet to create actionable predictions in the stock market. The algorithm runs language analysis on the data and combines this with proven technical indicators to train several neural networks. 
+Alpa Dragon is an AI software program that analyzes investor sentiment across the web to create actionable predictions in the stock market. The algorithm runs several analysis on the data and combines it with proven technical indicators to train several neural networks. 
 
 Due to the proprietary nature of this program, several algorithms have been witheld from Github. 
 

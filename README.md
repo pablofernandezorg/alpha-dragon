@@ -1,6 +1,7 @@
 Alpha Dragon AI
-www.<i></i>alphadragon.net
 ========
+ww<i></i>w.<i></i>alphadragon.net
+
 Version 4.0. Created by Pablo Fernandez. Copyright 2016. 
 
 I have created an AI software program that is capable of tracking thousands of Tweets per minute to create actionable predictions in the stock market. The algorithm runs a sentiment analysis on all stocks being tracked, and combines this data with proven technical indicators to train the neural network. 

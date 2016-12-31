@@ -3,49 +3,26 @@
 
 """
 ******************************************************************************
+Intellecutal Property Notice:
+
 The following confidential program contains algorithms written by Pablo Fernandez
-that may eventually be sold or used in a commerical setting. 
+that may eventually be sold or used in a commercial setting. 
+
 Please do not share or distribute this program. Copyright 2016. 
+
+Thank you.
+Pablo Fernandez
+www.pablofernandez.com
 ******************************************************************************
 """
 
 import connection
-
-"""
-Neural Network
-Data Set
-
-[1, 5]                 - Day of Week (Seasonality, Numerical)
-[1, 23]                - Trading Day (Seasonality, Numerical)
-[1, 12]                - Month (Seasonality, Numerical)
-[0, 20]                - Volume (% Difference From Average, Normalized In Percentiles)
-[0, 1]  False / True   - Above the 200 Day Moving Average (Normally Bullish Indicator)
-[0, 1]  False / True   - Below the 5 Day Moving Average (Normally Bullish Indicator)
-[0, 20]                - % Above / Below the 5 Day Moving Average (Normally Lower The Better, 5% Lowest Values Recorded Over X Months, Normalized In Percentiles)
-[0, 20]                - % Above / Below the Average Twitter Volume For That Stock
-[0, 200]               - Sentiment Analysis (Check back for liked Tweets and add credibility to magnify (-/+) score x0.15)
-
-Goal  
-[0, 1]   - Stock went down
-[1,2]    - Neutral  (Change less then 1%)
-[2,3]    - Stock went up
-
-For Friday, Saturday, and Sunday Data, compile all the information into 1 for Friday, 
-as each day goes by update the measurements. 
-
-on the next day, push an update to the last one if it was correct or not 
-
-
-URGENT **********************************************************
-Once you finish with the specific dates, add limits to each of the search
-loops to improve speed of the program executing
-
-"""
+import update
+import pulldata
 
 from datetime import date, datetime, timedelta
 import random
 import sys
-
 
 def rangedatelist(date, delta):
     start_date     = datetime.strptime(date, '%Y-%m-%d')
@@ -94,10 +71,10 @@ def neuralcalculations(connection, ticker, date):
     elif((month=="12") or (month=="1") or (month=="2")):
         trading_season = 1.0
     else:
-        print("Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
+        print("Fatal Error: Could Not Calculate " + day_name + " Accurately") # Kill Program, Something Went Very Wrong
         sys.exit("Fatal Error")
-    
-    
+
+
 # Calculate Moving Average 200 Trading Days * From Date *
 # *************************************************************************** 
     with connection.cursor() as cursor:
@@ -125,13 +102,11 @@ def neuralcalculations(connection, ticker, date):
     MAB_Averg = (MAB_Total / MAB_Count)
     MAB_Averg = round(MAB_Averg, 2)
     print("200 Day Moving Average: ", MAB_Averg)
+    update.large_moving_avg(connection, MAB_Averg, ticker)
+    
 # Calculate Moving Average 200 Trading Days * From Date *
 # *************************************************************************** 
    
-    
-    
-    
-    
 # Calculate Moving Average 5 Trading Days * From Date *
 # *************************************************************************** 
     with connection.cursor() as cursor:
@@ -161,7 +136,9 @@ def neuralcalculations(connection, ticker, date):
     print("Counter Check: ", MAL_Count)
     MAL_Averg = (MAL_Total / MAL_Count) 
     MAL_Averg = round(MAL_Averg, 2)
-    print("5 Day Moving Average: ", MAL_Averg)
+    print("5 Day Moving Average: ", MAL_Averg)  
+    update.small_moving_avg(connection, MAL_Averg, ticker)
+    
 # Calculate Moving Average 5 Trading Days * From Date *
 # *************************************************************************** 
     
@@ -195,10 +172,10 @@ def neuralcalculations(connection, ticker, date):
     MAV_Averg = (MAV_Total / MAV_Count) 
     MAV_Averg = round(MAV_Averg)
     print("Average Volume 90 Days: ", MAV_Averg)
+    update.avg_volume_long(connection, MAV_Averg, ticker)
+    
 # Calculate Volume Average 90 Trading Days * From Date *
 # *************************************************************************** 
- 
-   
  
 # Calculate # of Tweets From Today *******************************************
     with connection.cursor() as cursor:
@@ -207,11 +184,10 @@ def neuralcalculations(connection, ticker, date):
         connection.commit()
         today_tweets = cursor.fetchall()
         DailyTweets_Count = cursor.rowcount
+        update.today_tweets(connection, DailyTweets_Count, ticker)
+        
 # Calculate # Of Tweets From Today *******************************************
         
-        
-        
-
 # Calculate Sentiment For The Day 
 # *************************************************************************** 
 # SHORT TERM SENTIMENT ANALYSIS 
@@ -279,7 +255,7 @@ def neuralcalculations(connection, ticker, date):
         print("Fatal Error: Could Not Calculate Sentiment Accurately") 
         sys.exit("Fatal Error")
         
-    print("Sentiment For Today:    ", SentimentNormalized)   
+    print("Sentiment For " + day_name + "", SentimentNormalized)   
 # Calculate Sentiment For The Day *******************************************
     
 
@@ -347,7 +323,10 @@ def neuralcalculations(connection, ticker, date):
     SAB_Averg = round(SAB_Averg)
     SAB_Averg = SAB_Averg + 100
     print("30 Day Sentiment", SAB_Averg)      
+    update.avg_sentiment_short(connection, SAB_Averg, ticker)
+
     print("30 Day Avg Tweets", TVA_Total)    
+    update.avg_tweets_short(connection, TVA_Total, ticker)
     
     if (SAB_Averg<=95):
         SentimentLongTerm = float(0.0) 
@@ -410,6 +389,7 @@ def neuralcalculations(connection, ticker, date):
         forwardgo         = start_date - timedelta(days=-1)
         forward_date      = forwardgo.strftime('%Y-%m-%d')
         no_weekends       = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%A') # Grab Name of Requested Date
+        
         if(no_weekends=="Saturday"):
             start_date        = datetime.strptime(forward_date, '%Y-%m-%d')
             forwardgo         = start_date - timedelta(days=-2)
@@ -427,14 +407,14 @@ def neuralcalculations(connection, ticker, date):
                 print("Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
                 sys.exit("Fatal Error")      
       
-        print("Next Day", no_weekends)
-        print("Next Day", forward_date)
+        print("Next Day: ", no_weekends)
+        print("Next Day: ", forward_date)
 
         with connection.cursor() as cursor:
             sql = "SELECT * FROM `StockPrices` WHERE `Ticker`=%s AND `Date`=%s" 
             cursor.execute(sql, (ticker, forward_date))
             connection.commit()
-            prices_on_date = cursor.fetchall()
+            prices_on_forward_date = cursor.fetchall()
             safety_check = cursor.rowcount
 
         NextDay_Volume   = 0.01
@@ -442,12 +422,17 @@ def neuralcalculations(connection, ticker, date):
         NextDay_LowPr    = 0.01
         NextDay_Closing  = 0.01
         
-        for pricing in prices_on_date:
+        for pricing in prices_on_forward_date:
             NextDay_Volume  = pricing["Volume"]
             NextDay_Closing = pricing["Closing_Price"]
             NextDay_HighPr  = pricing["High_Price"]
             NextDay_LowPr   = pricing["Low_Price"]
 
+        if(NextDay_Closing==0.01):
+            print("Fatal Error: Forward Date Price Data Not Available") 
+            sys.exit("Fatal Error")
+    
+        print("Next Day------------------------------")
         print("Lookup Volume:      ", NextDay_Volume)
         print("Lookup High:        ", NextDay_HighPr)
         print("Lookup Low:         ", NextDay_LowPr)
@@ -600,27 +585,64 @@ def neuralcalculations(connection, ticker, date):
 # Calculate and Normalize Volume Trading
 # ***************************************************************************     
 
-
 # Calculate Results From The Next Day
-# ***************************************************************************         
+# ***************************************************************************  
+#  0.0   Stock price decreased 
+#  0.2   Stock price decreased by <1%
+#  0.3
+#  0.4
+#  ———————————————————
+#  0.4
+#  0.5
+#  0.6   Stock price increased by <1%
+#  1.0 Stock price increased        
+
     ThisDay_Closing = float(ThisDay_Closing)
     NextDay_Closing = float(NextDay_Closing)
     
-    change_percent = ((((ThisDay_Closing-NextDay_Closing)/NextDay_Closing)*100))
-    
-    if((change_percent<1.0) and (change_percent>-1.0)):
+    if(ThisDay_Closing<=NextDay_Closing):             # Stock price increased
+        change_percent = (((NextDay_Closing - ThisDay_Closing)/ThisDay_Closing)*100)
+        if(change_percent>1.0):
+            Output1   =  1.0
+            Output2   =  1.0
+        else:
+            Output1   =  0.7
+            Output2   =  0.7
+    if(ThisDay_Closing>NextDay_Closing):              # Stock price decreased
+        change_percent = (((ThisDay_Closing - NextDay_Closing)/ThisDay_Closing)*100)
+        if(change_percent>1.0):
+            Output1   =  0.0
+            Output2   =  0.0
+        else:
+            Output1   =  0.3
+            Output2   =  0.3    
         
-        Output1   =  0.5           # Stock Neutral Change Is Less Then 1%
-        Output2   =  0.5
-    elif(change_percent>1.0):
-        Output1   =  1.0           # Stock Went Up 
-        Output2   =  1.0
-    else:                      
-        Output1   =  0.0           # Stock Went Down 
-        Output2   =  0.0
-    
-    print("Change in stock percent:  ", change_percent) 
-    
+    if(ThisDay_Closing<=NextDay_Closing):             # Stock price increased
+        change_percent = (((NextDay_Closing - ThisDay_Closing)/ThisDay_Closing)*100)
+        if(change_percent>2.0):
+            Output3   =  1.0
+            Output4   =  1.0
+        else:
+            Output3   =  0.7
+            Output4   =  0.7
+    if(ThisDay_Closing>NextDay_Closing):              # Stock price decreased
+        change_percent = (((ThisDay_Closing - NextDay_Closing)/ThisDay_Closing)*100)
+        if(change_percent>2.0):
+            Output3   =  0.0
+            Output4   =  0.0
+        else:
+            Output3   =  0.3
+            Output4   =  0.3    
+        
+    if(ThisDay_Closing<=NextDay_Closing):             # Stock price increased
+        Output5   =  1.0
+        Output6   =  1.0    
+       
+    if(ThisDay_Closing>NextDay_Closing):              # Stock price decreased
+        Output5   =  0.0
+        Output6   =  0.0    
+               
+        
     if(ThisDay_Closing > MAB_Averg):
         AboveBigMoving = 1
     else:
@@ -630,6 +652,7 @@ def neuralcalculations(connection, ticker, date):
         BelowLittleMoving = 1
     else:
         BelowLittleMoving = 0
+        
 # Calculate Results From The Next Day
 # ***************************************************************************     
 
@@ -650,7 +673,9 @@ def neuralcalculations(connection, ticker, date):
     
     print("Moving Avg Sentiment: [0,200]  ", SAB_Averg)
 
-    print("Results:   [",Output1,",",Output2,"]"," Down: [0,0] Neutral: [0.5,0.5] Up: [1,1] ")
+    print("Results:   [",Output1,",",Output2,"]"," Up1%/Up/Down/Down1%")
+    print("Results:   [",Output3,",",Output4,"]"," Up2%/Up/Down/Down2%")
+    print("Results:   [",Output5,",",Output6,"]"," Up/Down")
 
     try:
         with connection.cursor() as cursor:
@@ -661,9 +686,10 @@ def neuralcalculations(connection, ticker, date):
         if result is None:
             print("Success: Inserting Neural Data Set:      ", ticker)
             with connection.cursor() as cursor:
-                sql = "INSERT INTO `NeuralNetwork` (`Date`, `Entry`, `TradingDay`, `TradingSeason`, `VolumeNormalized`, `AboveBigMoving`, `BelowLittleMoving`, `TweetsVolumeNormalized`, `Sentiment`, `Ticker`, `Output1`, `Output2`, `Sentiment30`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                cursor.execute(sql, (date, Entry, trading_day, trading_season, VolumeNormalized, AboveBigMoving, BelowLittleMoving, TweetsNormalized, SentimentNormalized, ticker, Output1, Output2, SentimentLongTerm))
+                sql = "INSERT INTO `NeuralNetwork` (`Date`, `Entry`, `TradingDay`, `TradingSeason`, `VolumeNormalized`, `AboveBigMoving`, `BelowLittleMoving`, `TweetsVolumeNormalized`, `Sentiment`, `Ticker`, `Output1`, `Output2`, `Output3`, `Output4`, `Output5`, `Output6`, `Sentiment30`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                cursor.execute(sql, (date, Entry, trading_day, trading_season, VolumeNormalized, AboveBigMoving, BelowLittleMoving, TweetsNormalized, SentimentNormalized, ticker, Output1, Output2, Output3, Output4, Output5, Output6, SentimentLongTerm))
                 connection.commit()
+            update.last_input(connection, ticker)
         else:
             print("Error: Neural Data Set Exists For The Date ", ticker, date)
     
@@ -673,19 +699,25 @@ def neuralcalculations(connection, ticker, date):
     
 def main():
     connect = connection.connection()
-
-    names = ["AAPL", "ACAD", "AMZN", "AZN", "AZO", "BA", "BBY", "CVS", "DAL", 
-             "DIS", "DYN", "FB", "FLO", "GILD", "GPRO", "IRBT", "JNJ", "KO", 
-             "KOF", "LULU", "MNKD", "MRK", "MSFT", "NEM", "NKE", "NWL", "OMC", 
-             "OPTT", "PG", "QCOM", "SBUX", "SO", "TDW", "TOPS", "TSLA", "TSN", 
-             "TWTR", "V", "VRX", "WGL", "WMT", "XOM", "EQT", "HOFT"]
-
-    dates = ["2016-12-06", "2016-12-07", "2016-12-08", "2016-12-09", "2016-12-10", 
-             "2016-12-11", "2016-12-12", "2016-12-13", "2016-12-14"]
     
-    for stock in names:
-        date = "2016-12-15"
-        neuralcalculations(connect, stock, date)
+    ticker_list = []
+    active      = pulldata.pull_active_stocks(connect)
+    
+    for stock in active:
+        ticker = stock["Ticker"].rstrip()
+        ticker_list.append(ticker)
+    
+    for stock in active:
+        backtrack  = datetime.today() - timedelta(days=2)
+        send_date = backtrack.strftime('%Y-%m-%d')        
+            
+        ticker_sybmbol = stock["Ticker"].rstrip()
+        ticker_company = stock["Company"].rstrip()
+        print("Current calculating: ", ticker_company, "for date", send_date)
+        neuralcalculations(connect, ticker_sybmbol, send_date)        
+        
+    connect.close()
+    print("*********** Program Completed ***********")    
     
 if __name__ == "__main__":
     main()

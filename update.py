@@ -46,6 +46,15 @@ def last_analysis(connection, ticker):
     cursor.execute(sql, (today, ticker))
     connection.commit()
     return "Success"
+    
+def last_input(connection, ticker):
+    date_check  = datetime.today() - timedelta(days=0)
+    today       = date_check.strftime('%H:%M:%S %m-%d-%Y')                
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Last_Input=%s WHERE Ticker=%s"
+    cursor.execute(sql, (today, ticker))
+    connection.commit()
+    return "Success"
 
 def last_prices(connection, ticker):
     date_check  = datetime.today() - timedelta(days=0)
@@ -74,5 +83,47 @@ def month_pulls_ultra(connection, ticker):
     cursor = connection.cursor()
     sql = "UPDATE Stocks SET Month_Pulls_Ultra = Month_Pulls_Ultra+1 WHERE Ticker=%s"
     cursor.execute(sql, (ticker))
+    connection.commit()
+    return "Success"
+    
+def large_moving_avg(connection, avg, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET LongMovingAvg = %s WHERE Ticker=%s"
+    cursor.execute(sql, (avg, ticker))
+    connection.commit()
+    return "Success"
+    
+def small_moving_avg(connection, avg, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET ShortMovingAvg = %s WHERE Ticker=%s"
+    cursor.execute(sql, (avg, ticker))
+    connection.commit()
+    return "Success"
+
+def avg_volume_long(connection, avg, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET AvgVolumeNinety = %s WHERE Ticker=%s"
+    cursor.execute(sql, (avg, ticker))
+    connection.commit()
+    return "Success"
+    
+def avg_sentiment_short(connection, avg, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET AvgSentimentThirty = %s WHERE Ticker=%s"
+    cursor.execute(sql, (avg, ticker))
+    connection.commit()
+    return "Success"
+    
+def avg_tweets_short(connection, avg, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET AvgTweetVolumeThirty = %s WHERE Ticker=%s"
+    cursor.execute(sql, (avg, ticker))
+    connection.commit()
+    return "Success"
+    
+def today_tweets(connection, num, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Tweets = %s WHERE Ticker=%s"
+    cursor.execute(sql, (num, ticker))
     connection.commit()
     return "Success"

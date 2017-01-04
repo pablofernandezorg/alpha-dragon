@@ -43,7 +43,7 @@ def neuralcalculations(connection, ticker, date):
     try:
         network = Network.load("neuralnetwork.json")
     except Exception as e:
-        print("Error: Neural Network Does Not Exist")
+        print("#101 Error: Neural Network Does Not Exist")
         sys.exit("Fatal Error") # Kill Program, Bad User Input
 
     date_parts = date.split("-") # Explode Date
@@ -68,25 +68,27 @@ def neuralcalculations(connection, ticker, date):
     elif(day_name=="Friday"):
         trading_day = 1
     else:
-        print("Fatal Error: Invalid Date Input Received") # Kill Program, Request Not Allowed
+        print("#102 Fatal Error: Invalid Date Input Received") # Kill Program, Request Not Allowed
         sys.exit("Fatal Error")
             
-    if((month=="3") or (month=="4") or (month=="5")):
+    print(month)
+    if((month=="03") or (month=="04") or (month=="05")):
         trading_season = 0.25
-    elif((month=="6") or (month=="7") or (month=="8")):
+    elif((month=="06") or (month=="07") or (month=="08")):
         trading_season = 0.50
-    elif((month=="9") or (month=="10") or (month=="11")):
+    elif((month=="09") or (month=="10") or (month=="11")):
         trading_season = 0.75
-    elif((month=="12") or (month=="1") or (month=="2")):
+    elif((month=="12") or (month=="01") or (month=="02")):
         trading_season = 1.0
     else:
-        print("Fatal Error: Could Not Calculate " + day_name + " Accurately") # Kill Program, Something Went Very Wrong
+        print("#103 Fatal Error: Could Not Calculate " + day_name + " Accurately") # Kill Program, Something Went Very Wrong
         sys.exit("Fatal Error")
 
+    # Run this from Price records which will be updated LIVE 
     # Calculate Live Stock Information *******************************************
     with connection.cursor() as cursor:
-        sql = "SELECT * FROM `Stocks` WHERE `Ticker`=%s" 
-        cursor.execute(sql, (ticker))
+        sql = "SELECT * FROM `StockPrices` WHERE `Ticker`=%s AND `Date`=%s" 
+        cursor.execute(sql, (ticker, date))
         connection.commit()
         live_data = cursor.fetchall()
 
@@ -97,7 +99,6 @@ def neuralcalculations(connection, ticker, date):
         MAV_Averg                  = live["AvgVolumeNinety"]
         MAL_Averg                  = live["ShortMovingAvg"]
         MAB_Averg                  = live["LongMovingAvg"]
-
     # Calculate Live Stock Information *******************************************
 
 
@@ -175,7 +176,7 @@ def neuralcalculations(connection, ticker, date):
     elif(SentimentNormalized>40):
         SentimentNormalized = float(1.0) 
     else:
-        print("Fatal Error: Could Not Calculate Sentiment Accurately") 
+        print("#104 Fatal Error: Could Not Calculate Sentiment Accurately") 
         sys.exit("Fatal Error")
         
     print("Sentiment For " + day_name + "", SentimentNormalized)   
@@ -183,7 +184,6 @@ def neuralcalculations(connection, ticker, date):
     
     
     # Calculate Prediction Date *************************************************
-
 
     start_date        = datetime.strptime(date, '%Y-%m-%d')
     forwardgo         = start_date - timedelta(days=-1)
@@ -196,7 +196,7 @@ def neuralcalculations(connection, ticker, date):
         forward_date      = forwardgo.strftime('%Y-%m-%d')
         no_weekends       = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%A') # Grab Name of Requested Date
         if((no_weekends=="Saturday") or (no_weekends=="Sunday")):
-            print("Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
+            print("#105 Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
             sys.exit("Fatal Error")
     elif(no_weekends=="Sunday"):
         start_date        = datetime.strptime(forward_date, '%Y-%m-%d')
@@ -204,10 +204,11 @@ def neuralcalculations(connection, ticker, date):
         forward_date      = forwardgo.strftime('%Y-%m-%d')
         no_weekends       = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%A') # Grab Name of Requested Date
         if((no_weekends=="Saturday") or (no_weekends=="Sunday")):
-            print("Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
+            print("#106 Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
             sys.exit("Fatal Error")
-            
-            
+    
+    forward_date_id = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%d') 
+    
     # Calculate Prediction Date *************************************************
 
     # Calculate Sentiment + Tweet Volume Average 30 Actual Days * From Date *
@@ -298,7 +299,7 @@ def neuralcalculations(connection, ticker, date):
     elif(SAB_Averg>=105):
         SentimentLongTerm = float(1.0) 
     else:
-        print("Fatal Error: Could Not Calculate Sentiment Accurately") 
+        print("#201 Fatal Error: Could Not Calculate Sentiment Accurately") 
         sys.exit("Fatal Error")    
     # Calculate Sentiment + Volume Average 30 Actual Days * From Date *
     # *************************************************************************** 
@@ -370,7 +371,7 @@ def neuralcalculations(connection, ticker, date):
     elif((VolumeNormalized==19) or (VolumeNormalized==20)):
         VolumeNormalized = float(1.0)
     else:
-        print("Fatal Error: Could Not Calculate Volume Accurately") 
+        print("#202 Fatal Error: Could Not Calculate Volume Accurately") 
         sys.exit("Fatal Error")
     # *************************************************************************** 
 
@@ -442,7 +443,7 @@ def neuralcalculations(connection, ticker, date):
     elif((TweetsNormalized==19) or (TweetsNormalized==20)):
         TweetsNormalized = float(1.0) 
     else:
-        print("Fatal Error: Could Not Calculate Volume Accurately") 
+        print("#203 Fatal Error: Could Not Calculate Volume Accurately") 
         sys.exit("Fatal Error")
 
     # Calculate and Normalize Volume Trading
@@ -497,14 +498,14 @@ def neuralcalculations(connection, ticker, date):
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * FROM `Predictions` WHERE `PredictionDate`=%s AND Ticker=%s"
-            cursor.execute(sql, (date, ticker))
+            cursor.execute(sql, (forward_date, ticker))
             result = cursor.fetchone()
         
         if result is None:
             print("Success: Inserting Prediction To Records:      ", ticker)
             with connection.cursor() as cursor:
-                sql = "INSERT INTO `Predictions` (`Date`, `PredictionDate`, `PredictionDateName`, `Ticker`, `InitialPrice`, `Entry`, `Pred_Output1`, `Pred_Output2`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-                cursor.execute(sql, (Today, forward_date, no_weekends, ticker, stock_price_live, Entry, result1, result2))
+                sql = "INSERT INTO `Predictions` (`Date`, `PredictionDate`, `Day_ID`, `PredictionDateName`, `Ticker`, `InitialPrice`, `Entry`, `Pred_Output1`, `Pred_Output2`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+                cursor.execute(sql, (Today, forward_date, forward_date_id, no_weekends, ticker, stock_price_live, Entry, result1, result2))
                 connection.commit()
         else:
             print("Success: Updating Prediction In Records:      ", ticker)
@@ -539,7 +540,12 @@ def neuralcalculations(connection, ticker, date):
             sql = "UPDATE Predictions SET Pred_Output2=%s WHERE Entry=%s"
             cursor.execute(sql, (result2, unique_entry))
             connection.commit()
-    
+            
+            cursor = connection.cursor()
+            sql = "UPDATE Predictions SET Day_ID=%s WHERE Entry=%s"
+            cursor.execute(sql, (forward_date_id, unique_entry))
+            connection.commit()
+        
     finally:
         # Adjusted for possibility that network is not fully trained yet.
         # Fine tune this as time goes forward
@@ -803,7 +809,12 @@ def neuralcalculations(connection, ticker, date):
         sql = "UPDATE Predictions SET Confidence=%s WHERE PredictionDate=%s AND Ticker=%s"
         cursor.execute(sql, (confidence, forward_date, ticker))
         connection.commit()
-            
+
+        cursor = connection.cursor()
+        sql = "UPDATE Predictions SET Prediction=%s WHERE PredictionDate=%s AND Ticker=%s"
+        cursor.execute(sql, (prediction_event, forward_date, ticker))
+        connection.commit()
+                    
         print("::: SAVING DATA ::: DO NOT CLOSE CONNECTION :::")
     
 def main():
@@ -822,14 +833,14 @@ def main():
     
     for stock in active:
         backtrack  = datetime.today() - timedelta(days=0)
-        prediction_date = backtrack.strftime('%Y-%m-%d')        
+        prediction_on_date = backtrack.strftime('%Y-%m-%d')        
     
         ticker_sybmbol = stock["Ticker"].rstrip()
         ticker_company = stock["Company"].rstrip()
         
         print("Neural Predictions------------------------------------------")
-        print(ticker_company, "for date", prediction_date)
-        neuralcalculations(connect, ticker_sybmbol, prediction_date)        
+        print(ticker_company, "for date", prediction_on_date)
+        neuralcalculations(connect, ticker_sybmbol, prediction_on_date)        
         
     connect.close()
     print("*********** Program Completed ***********")    

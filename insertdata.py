@@ -56,7 +56,7 @@ def insert_stockprices(counter, connection, Unique_Entry, Date, Open_Price, High
                 cursor.execute(sql, (Unique_Entry, Date, Open_Price, High_Price, Low_Price, Closing_Price, Volume, Ticker))
                 connection.commit()
         else:
-            print("Error: Duplicate Entry For ", Ticker)
-            
+            update.update_stockprices(connection, Date, Open_Price, High_Price, Low_Price, Closing_Price, Volume, Ticker)
+            print("Success: Duplicate Entry For ", Ticker)            
     finally:
         update.last_prices(connection, Ticker)

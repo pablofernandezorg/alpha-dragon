@@ -29,6 +29,33 @@ def update_analysis(connection, unique_entry, score):
     connection.commit()
     return "Success"
     
+def update_stockprices(connection, Date, Open_Price, High_Price, Low_Price, Closing_Price, Volume, Ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE StockPrices SET Open_Price=%s WHERE Date=%s AND Ticker=%s"
+    cursor.execute(sql, (Open_Price, Date, Ticker))
+    connection.commit()
+
+    cursor = connection.cursor()
+    sql = "UPDATE StockPrices SET High_Price=%s WHERE Date=%s AND Ticker=%s"
+    cursor.execute(sql, (High_Price, Date, Ticker))
+    connection.commit()
+    
+    cursor = connection.cursor()
+    sql = "UPDATE StockPrices SET Low_Price=%s WHERE Date=%s AND Ticker=%s"
+    cursor.execute(sql, (Low_Price, Date, Ticker))
+    connection.commit()
+    
+    cursor = connection.cursor()
+    sql = "UPDATE StockPrices SET Closing_Price=%s WHERE Date=%s AND Ticker=%s"
+    cursor.execute(sql, (Closing_Price, Date, Ticker))
+    connection.commit()
+    
+    cursor = connection.cursor()
+    sql = "UPDATE StockPrices SET Volume=%s WHERE Date=%s AND Ticker=%s"
+    cursor.execute(sql, (Volume, Date, Ticker))
+    connection.commit()
+    return "Success"
+    
 def last_fetch(connection, ticker):
     date_check  = datetime.today() - timedelta(days=0)
     today       = date_check.strftime('%H:%M:%S %m-%d-%Y')                

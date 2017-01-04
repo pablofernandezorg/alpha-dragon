@@ -48,6 +48,7 @@ def price_data(connection, ticker):
     backtrack  = datetime.today() - timedelta(days=5)
     start_date = backtrack.strftime('%Y%m%d')
     end_date   = datetime.today().strftime('%Y%m%d')
+    
     print("Raw Stock Data Historical Price -----------------------------")
     data = fetch_historical_prices(ticker, start_date, end_date)
     

@@ -178,6 +178,7 @@ def neuralcalculations(connection, ticker, date):
 # *************************************************************************** 
  
 # Calculate # of Tweets From Today *******************************************
+    DailyTweets_Count = 0  
     with connection.cursor() as cursor:
         sql = "SELECT * FROM `StockTweets` WHERE `Ticker`=%s AND `Date`=%s" 
         cursor.execute(sql, (ticker, date))
@@ -372,7 +373,7 @@ def neuralcalculations(connection, ticker, date):
             
         if(safety_check == 0):
             print("Error: No Date Record Exists For The Date Requested")
-            sys.exit("Fatal Error") # Kill Program, Bad User Input
+            sys.exit("Fatal Error #202") # Kill Program, Bad User Input
         else:
             for pricing in prices_on_date:
                 ThisDay_Volume  = pricing["Volume"]
@@ -397,7 +398,7 @@ def neuralcalculations(connection, ticker, date):
             no_weekends       = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%A') # Grab Name of Requested Date
             if((no_weekends=="Saturday") or (no_weekends=="Sunday")):
                 print("Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
-                sys.exit("Fatal Error")
+                sys.exit("Fatal Error #203")
         elif(no_weekends=="Sunday"):
             start_date        = datetime.strptime(forward_date, '%Y-%m-%d')
             forwardgo         = start_date - timedelta(days=-1)
@@ -405,7 +406,7 @@ def neuralcalculations(connection, ticker, date):
             no_weekends       = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%A') # Grab Name of Requested Date
             if((no_weekends=="Saturday") or (no_weekends=="Sunday")):
                 print("Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
-                sys.exit("Fatal Error")      
+                sys.exit("Fatal Error #204")      
       
         print("Next Day: ", no_weekends)
         print("Next Day: ", forward_date)
@@ -416,7 +417,7 @@ def neuralcalculations(connection, ticker, date):
             connection.commit()
             prices_on_forward_date = cursor.fetchall()
             safety_check = cursor.rowcount
-
+            
         NextDay_Volume   = 0.01
         NextDay_HighPr   = 0.01
         NextDay_LowPr    = 0.01
@@ -429,10 +430,48 @@ def neuralcalculations(connection, ticker, date):
             NextDay_LowPr   = pricing["Low_Price"]
 
         if(NextDay_Closing==0.01):
-            print("Fatal Error: Forward Date Price Data Not Available") 
-            sys.exit("Fatal Error")
+            # For some reason no price record exists for this date, due to Market Holiday Possibly, Push Forward Again
+            start_date        = datetime.strptime(forward_date, '%Y-%m-%d')
+            forwardgo         = start_date - timedelta(days=-1)
+            forward_date      = forwardgo.strftime('%Y-%m-%d')
+            no_weekends       = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%A') # Grab Name of Requested Date
+            
+            if(no_weekends=="Saturday"):
+                start_date        = datetime.strptime(forward_date, '%Y-%m-%d')
+                forwardgo         = start_date - timedelta(days=-2)
+                forward_date      = forwardgo.strftime('%Y-%m-%d')
+                no_weekends       = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%A') # Grab Name of Requested Date
+                if((no_weekends=="Saturday") or (no_weekends=="Sunday")):
+                    print("Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
+                    sys.exit("Fatal Error #205")
+            elif(no_weekends=="Sunday"):
+                start_date        = datetime.strptime(forward_date, '%Y-%m-%d')
+                forwardgo         = start_date - timedelta(days=-1)
+                forward_date      = forwardgo.strftime('%Y-%m-%d')
+                no_weekends       = datetime.strptime((forward_date), '%Y-%m-%d').strftime('%A') # Grab Name of Requested Date
+                if((no_weekends=="Saturday") or (no_weekends=="Sunday")):
+                    print("Fatal Error: Could Not Calculate Date Accurately") # Kill Program, Something Went Very Wrong
+                    sys.exit("Fatal Error #206")      
     
-        print("Next Day------------------------------")
+            print("New Forward Date Selected: ", forward_date)
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM `StockPrices` WHERE `Ticker`=%s AND `Date`=%s" 
+                cursor.execute(sql, (ticker, forward_date))
+                connection.commit()
+                prices_on_forward_date = cursor.fetchall()
+                safety_check = cursor.rowcount  
+                
+            for pricing in prices_on_forward_date:
+                NextDay_Volume  = pricing["Volume"]
+                NextDay_Closing = pricing["Closing_Price"]
+                NextDay_HighPr  = pricing["High_Price"]
+                NextDay_LowPr   = pricing["Low_Price"]        
+            
+            if(NextDay_Closing==0.01):
+                print("Fatal Error: Forward Date Price Data Not Available") 
+                sys.exit("Fatal Error #207")
+    
+        print("Next Day-----------------------", no_weekends)
         print("Lookup Volume:      ", NextDay_Volume)
         print("Lookup High:        ", NextDay_HighPr)
         print("Lookup Low:         ", NextDay_LowPr)
@@ -710,7 +749,7 @@ def main():
     for stock in active:
         backtrack  = datetime.today() - timedelta(days=2)
         send_date = backtrack.strftime('%Y-%m-%d')        
-            
+        send_date = "2016-12-30"
         ticker_sybmbol = stock["Ticker"].rstrip()
         ticker_company = stock["Company"].rstrip()
         print("Current calculating: ", ticker_company, "for date", send_date)

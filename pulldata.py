@@ -6,7 +6,7 @@
 Intellecutal Property Notice:
 
 The following confidential program contains algorithms written by Pablo Fernandez
-that may eventually be sold or used in a commerical setting. 
+that may eventually be sold or used in a commercial setting. 
 
 Please do not share or distribute this program. Copyright 2016. 
 
@@ -48,3 +48,11 @@ def pull_active_stocks(connection):
         connection.commit()
         stocks = cursor.fetchall()
     return stocks
+    
+def pull_neural_predictions(connection, ticker):
+    with connection.cursor() as cursor:
+        sql = "SELECT Ticker, Result FROM `Predictions` WHERE `Ticker`=%s AND `Status`='Completed'" 
+        cursor.execute(sql, (ticker))
+        connection.commit()
+        predictions = cursor.fetchall()
+    return predictions

@@ -148,9 +148,23 @@ def avg_tweets_short(connection, avg, ticker):
     connection.commit()
     return "Success"
     
+def day_sentiment(connection, avg, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET DaySentiment = %s WHERE Ticker=%s"
+    cursor.execute(sql, (avg, ticker))
+    connection.commit()
+    return "Success"
+    
 def today_tweets(connection, num, ticker):
     cursor = connection.cursor()
     sql = "UPDATE Stocks SET Tweets = %s WHERE Ticker=%s"
     cursor.execute(sql, (num, ticker))
+    connection.commit()
+    return "Success"
+    
+def prediction_accuracy(connection, acc, ticker):
+    cursor = connection.cursor()
+    sql = "UPDATE Stocks SET Accuracy = %s WHERE Ticker=%s"
+    cursor.execute(sql, (acc, ticker))
     connection.commit()
     return "Success"

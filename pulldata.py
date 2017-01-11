@@ -56,3 +56,21 @@ def pull_neural_predictions(connection, ticker):
         connection.commit()
         predictions = cursor.fetchall()
     return predictions
+    
+def pull_candlestickgraph(connection, ticker):
+    # date, open, high, low, close, volue
+    with connection.cursor() as cursor:
+        sql = "SELECT Date,Open_Price,High_Price,Low_Price,Closing_Price,Volume FROM `StockPrices` WHERE `Ticker`=%s ORDER By Date DESC LIMIT 200" 
+        cursor.execute(sql, (ticker))
+        connection.commit()
+        data = cursor.fetchall()
+    return data
+
+def pull_lineargraph(connection, ticker):
+    # closing_price from 5 years back
+    with connection.cursor() as cursor:
+        sql = "SELECT Date,Closing_Price FROM `StockPrices` WHERE `Ticker`=%s ORDER By Date DESC LIMIT 1300" 
+        cursor.execute(sql, (ticker))
+        connection.commit()
+        data = cursor.fetchall()
+    return data

@@ -125,7 +125,7 @@ def connection():
     #**************************** CONFIDENTIAL INFORMATION **************************
     connection = pymysql.connect(host='pablofernandez.com',
                              user='pablofer_market',
-                             password='G5209sW838sjui6500w',
+                             password='',
                              db='pablofer_stockmarket',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)

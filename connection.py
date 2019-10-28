@@ -123,7 +123,7 @@ def connection():
     #**************************** CONFIDENTIAL INFORMATION **************************
     #**************************** CONFIDENTIAL INFORMATION **************************
     #**************************** CONFIDENTIAL INFORMATION **************************
-    connection = pymysql.connect(host='pablofernandez.com',
+    connection = pymysql.connect(host='',
                              user='pablofer_market',
                              password='',
                              db='pablofer_stockmarket',
